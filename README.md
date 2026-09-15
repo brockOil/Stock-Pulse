@@ -49,7 +49,7 @@ vars / `-D` flags - never commit a real key):
 |---|---|---|---|
 | `llm.provider` | `gemini` | `groq` | `ollama` |
 | `llm.base-url` | `https://generativelanguage.googleapis.com` | `https://api.groq.com` | `http://localhost:11434` |
-| `llm.model` | `gemini-1.5-flash` | `llama-3.1-8b-instant` | `llama3.1` |
+| `llm.model` | `gemini-3.6-flash` | `llama-3.1-8b-instant` | `llama3.1` |
 | `llm.api-key` | required | required | not required |
 
 The key is read via `${LLM_API_KEY:}` from the environment - set `LLM_API_KEY` before
