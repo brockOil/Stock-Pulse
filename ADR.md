@@ -237,3 +237,25 @@ to name what was deferred as a priority decision rather than a time excuse.
 - **True per-token provider streaming for Gemini** (the SSE bonus falls back to one
   chunk for Gemini, real token streaming only for the OpenAI-compatible providers) - a
   deliberate scope cut on an already-optional +5 bonus rather than on core scope.
+
+---
+
+## 7. Frontend framework: React 18 vs. Angular 17
+
+**Context.** The tech spec offers either React 18 (Vite) or Angular 17 and asks for the
+choice to be documented.
+
+**Options.** React 18 + Vite. Angular 17 (standalone components).
+
+**Decision.** React + Vite. The console is a small, mostly-flat component tree
+(a product table, a suggestion list, a couple of forms) with one real piece of
+non-trivial client state (poll-driven product/suggestion lists plus an in-flight SSE
+stream) - a good fit for React's local `useState`/`useEffect` without needing Angular's
+DI/module system or RxJS for anything this app actually does. Vite's dev server starts
+and hot-reloads fast enough to stay out of the way during the sprint's tight time budget.
+
+**Tradeoffs.** Angular's stricter structure (services, DI, RxJS streams) scales better
+to a larger app - if sprint 2/3 add the catalog board, price-history charts, and
+multi-view navigation the roadmap describes, an Angular rewrite might pay for itself in
+maintainability. For this sprint's scope, that structure would have been overhead
+without a matching benefit.
