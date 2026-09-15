@@ -17,5 +17,7 @@ public interface ReorderSuggestionRepository extends JpaRepository<ReorderSugges
 
     List<ReorderSuggestion> findByProductIdOrderByCreatedAtDesc(String productId);
 
+    List<ReorderSuggestion> findByProductIdAndStatusOrderByCreatedAtDesc(String productId, SuggestionStatus status);
+
     List<ReorderSuggestion> findAllByOrderByCreatedAtDesc();
 }

@@ -26,8 +26,10 @@ public class PricingSuggestionController {
     }
 
     @GetMapping
-    public List<PricingSuggestionResponse> list(@RequestParam(required = false) SuggestionStatus status) {
-        return suggestionService.findPricingSuggestions(status).stream().map(PricingSuggestionResponse::from).toList();
+    public List<PricingSuggestionResponse> list(
+            @RequestParam(required = false) SuggestionStatus status,
+            @RequestParam(required = false) String productId) {
+        return suggestionService.findPricingSuggestions(productId, status).stream().map(PricingSuggestionResponse::from).toList();
     }
 
     @PatchMapping("/{id}")

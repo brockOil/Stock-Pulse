@@ -160,17 +160,31 @@ public class SuggestionService {
     }
 
     @Transactional(readOnly = true)
-    public List<PricingSuggestion> findPricingSuggestions(SuggestionStatus status) {
-        return status == null
-                ? pricingSuggestionRepository.findAllByOrderByCreatedAtDesc()
-                : pricingSuggestionRepository.findByStatusOrderByCreatedAtDesc(status);
+    public List<PricingSuggestion> findPricingSuggestions(String productId, SuggestionStatus status) {
+        if (productId != null && status != null) {
+            return pricingSuggestionRepository.findByProductIdAndStatusOrderByCreatedAtDesc(productId, status);
+        }
+        if (productId != null) {
+            return pricingSuggestionRepository.findByProductIdOrderByCreatedAtDesc(productId);
+        }
+        if (status != null) {
+            return pricingSuggestionRepository.findByStatusOrderByCreatedAtDesc(status);
+        }
+        return pricingSuggestionRepository.findAllByOrderByCreatedAtDesc();
     }
 
     @Transactional(readOnly = true)
-    public List<ReorderSuggestion> findReorderSuggestions(SuggestionStatus status) {
-        return status == null
-                ? reorderSuggestionRepository.findAllByOrderByCreatedAtDesc()
-                : reorderSuggestionRepository.findByStatusOrderByCreatedAtDesc(status);
+    public List<ReorderSuggestion> findReorderSuggestions(String productId, SuggestionStatus status) {
+        if (productId != null && status != null) {
+            return reorderSuggestionRepository.findByProductIdAndStatusOrderByCreatedAtDesc(productId, status);
+        }
+        if (productId != null) {
+            return reorderSuggestionRepository.findByProductIdOrderByCreatedAtDesc(productId);
+        }
+        if (status != null) {
+            return reorderSuggestionRepository.findByStatusOrderByCreatedAtDesc(status);
+        }
+        return reorderSuggestionRepository.findAllByOrderByCreatedAtDesc();
     }
 
     private void requireDecidable(SuggestionStatus decision) {

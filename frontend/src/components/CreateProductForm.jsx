@@ -10,6 +10,7 @@ const EMPTY_FORM = {
   stockLevel: '',
   reorderThreshold: '',
   demandVelocity: '',
+  costPrice: '',
 };
 
 export default function CreateProductForm({ onCreate }) {
@@ -38,6 +39,7 @@ export default function CreateProductForm({ onCreate }) {
       stockLevel: Number(form.stockLevel),
       reorderThreshold: Number(form.reorderThreshold),
       demandVelocity: form.demandVelocity === '' ? 0 : Number(form.demandVelocity),
+      costPrice: form.costPrice === '' ? null : Number(form.costPrice),
     };
     if (!(payload.currentPrice > 0)) {
       setError('Price must be a positive number.');
@@ -45,6 +47,10 @@ export default function CreateProductForm({ onCreate }) {
     }
     if (!(payload.stockLevel >= 0) || !(payload.reorderThreshold >= 0)) {
       setError('Stock level and reorder threshold must be zero or greater.');
+      return;
+    }
+    if (payload.costPrice !== null && !(payload.costPrice >= 0)) {
+      setError('Cost price must be zero or greater.');
       return;
     }
 
@@ -138,6 +144,17 @@ export default function CreateProductForm({ onCreate }) {
             placeholder="0"
             value={form.demandVelocity}
             onChange={(e) => update('demandVelocity', e.target.value)}
+          />
+        </label>
+        <label>
+          Cost price ($, optional)
+          <input
+            type="number"
+            min="0"
+            step="0.01"
+            placeholder="for margin display"
+            value={form.costPrice}
+            onChange={(e) => update('costPrice', e.target.value)}
           />
         </label>
       </div>

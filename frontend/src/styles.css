@@ -850,3 +850,251 @@ body::before {
   color: var(--green);
   font-weight: 500;
 }
+
+/* ---------- Margin tag (product table) ---------- */
+
+.price-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  line-height: 1.3;
+}
+
+.margin-tag {
+  font-family: var(--sans);
+  font-size: 9.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--green);
+}
+
+.margin-tag.margin-low {
+  color: var(--amber);
+}
+
+/* ---------- Stock heatmap ---------- */
+
+.heatmap-card {
+  margin-bottom: 18px;
+}
+
+.heatmap-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.heatmap-header .panel-title {
+  margin: 0;
+}
+
+.heatmap-legend {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  font-size: 11px;
+  color: var(--ink-3);
+}
+
+.heatmap-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.legend-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+}
+
+.legend-critical {
+  background: var(--red);
+}
+
+.legend-low {
+  background: var(--amber);
+}
+
+.legend-watch {
+  background: #d4a92a;
+}
+
+.legend-healthy {
+  background: var(--green);
+}
+
+.heatmap-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 7px 0;
+  border-top: 1px solid var(--rule);
+}
+
+.heatmap-row:first-of-type {
+  border-top: none;
+}
+
+.heatmap-row-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
+  width: 80px;
+  flex-shrink: 0;
+}
+
+.heatmap-grid {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.heat-tile {
+  width: 68px;
+  height: 52px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  cursor: default;
+  transition: transform 0.12s;
+  color: #fff;
+}
+
+.heat-tile:hover {
+  transform: scale(1.06);
+  box-shadow: var(--shadow-sm);
+}
+
+.heat-stock {
+  font-family: var(--mono);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.heat-name {
+  font-size: 8.5px;
+  text-align: center;
+  padding: 0 3px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+  opacity: 0.9;
+}
+
+.heat-critical {
+  background: var(--red);
+}
+
+.heat-low {
+  background: var(--amber);
+}
+
+.heat-watch {
+  background: #d4a92a;
+}
+
+.heat-healthy {
+  background: var(--green);
+}
+
+/* ---------- Price history modal ---------- */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(26, 24, 20, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 50;
+  animation: fadeIn 0.15s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-card {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  width: 100%;
+  max-width: 540px;
+  box-shadow: var(--shadow-lift);
+  animation: fadeSlideIn 0.2s ease;
+}
+
+.modal-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+  font-size: 13.5px;
+}
+
+.modal-loading {
+  padding: 30px 0;
+  text-align: center;
+  color: var(--ink-3);
+  font-size: 13px;
+}
+
+.history-empty {
+  font-size: 12px;
+  text-align: center;
+  margin: 10px 0 0;
+}
+
+.price-chart {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.chart-axis {
+  stroke: var(--rule-2);
+  stroke-width: 1;
+}
+
+.chart-axis-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  fill: var(--ink-3);
+}
+
+.price-chart-line {
+  stroke: var(--accent);
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.price-chart-area {
+  fill: var(--accent);
+  opacity: 0.08;
+  stroke: none;
+}
+
+.price-chart-dot {
+  fill: var(--bg-card);
+  stroke: var(--accent);
+  stroke-width: 2;
+}

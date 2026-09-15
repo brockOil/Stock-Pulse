@@ -1,6 +1,6 @@
 import ProductRow from './ProductRow.jsx';
 
-export default function ProductList({ products, busyId, onSimulateSale, onUpdateStock, onSuggestPricing, onSuggestReorder, onStream }) {
+export default function ProductList({ products, busyId, onSimulateSale, onUpdateStock, onSuggestPricing, onSuggestReorder, onStream, onHistory }) {
   return (
     <div>
       <h3 className="panel-title">Catalog ({products.length})</h3>
@@ -31,6 +31,7 @@ export default function ProductList({ products, busyId, onSimulateSale, onUpdate
                   onSuggestPricing={onSuggestPricing}
                   onSuggestReorder={onSuggestReorder}
                   onStream={onStream}
+                  onHistory={onHistory}
                 />
               ))}
               {products.length === 0 && (

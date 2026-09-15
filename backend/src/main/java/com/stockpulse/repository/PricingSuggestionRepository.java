@@ -17,5 +17,7 @@ public interface PricingSuggestionRepository extends JpaRepository<PricingSugges
 
     List<PricingSuggestion> findByProductIdOrderByCreatedAtDesc(String productId);
 
+    List<PricingSuggestion> findByProductIdAndStatusOrderByCreatedAtDesc(String productId, SuggestionStatus status);
+
     List<PricingSuggestion> findAllByOrderByCreatedAtDesc();
 }

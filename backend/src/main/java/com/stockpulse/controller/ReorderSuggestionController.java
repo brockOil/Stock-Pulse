@@ -26,8 +26,10 @@ public class ReorderSuggestionController {
     }
 
     @GetMapping
-    public List<ReorderSuggestionResponse> list(@RequestParam(required = false) SuggestionStatus status) {
-        return suggestionService.findReorderSuggestions(status).stream().map(ReorderSuggestionResponse::from).toList();
+    public List<ReorderSuggestionResponse> list(
+            @RequestParam(required = false) SuggestionStatus status,
+            @RequestParam(required = false) String productId) {
+        return suggestionService.findReorderSuggestions(productId, status).stream().map(ReorderSuggestionResponse::from).toList();
     }
 
     @PatchMapping("/{id}")

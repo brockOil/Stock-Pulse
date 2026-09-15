@@ -5,6 +5,8 @@ import SuggestionsPanel from './components/SuggestionsPanel.jsx';
 import CreateProductForm from './components/CreateProductForm.jsx';
 import StrategySwitcher from './components/StrategySwitcher.jsx';
 import StreamPanel from './components/StreamPanel.jsx';
+import StockHeatmap from './components/StockHeatmap.jsx';
+import PriceHistoryModal from './components/PriceHistoryModal.jsx';
 
 const POLL_INTERVAL_MS = 4000;
 const CATEGORIES = ['', 'ELECTRONICS', 'APPAREL', 'HOME'];
@@ -26,6 +28,8 @@ export default function App() {
 
   const [streamState, setStreamState] = useState(null);
   const streamAbortRef = useRef(null);
+
+  const [historyProduct, setHistoryProduct] = useState(null);
 
   const refreshAll = useCallback(async () => {
     try {
@@ -173,6 +177,8 @@ export default function App() {
 
       {streamState && <StreamPanel state={streamState} onClose={() => setStreamState(null)} />}
 
+      <StockHeatmap products={products} />
+
       <main className="layout">
         <section className="layout-main">
           <ProductList
@@ -183,6 +189,7 @@ export default function App() {
             onSuggestPricing={handleSuggestPricing}
             onSuggestReorder={handleSuggestReorder}
             onStream={handleStream}
+            onHistory={setHistoryProduct}
           />
         </section>
         <section className="layout-side">
@@ -197,6 +204,8 @@ export default function App() {
           />
         </section>
       </main>
+
+      {historyProduct && <PriceHistoryModal product={historyProduct} onClose={() => setHistoryProduct(null)} />}
     </div>
   );
 }
