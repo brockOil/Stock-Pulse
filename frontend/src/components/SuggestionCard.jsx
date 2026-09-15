@@ -3,7 +3,7 @@ import Badge from './Badge.jsx';
 export default function SuggestionCard({ suggestion, type, onAccept, onReject, busy }) {
   const isPricing = type === 'pricing';
   return (
-    <div className="card suggestion-card">
+    <div className="card suggestion-card" data-trigger={suggestion.triggerReason}>
       <div className="suggestion-head">
         <div>
           <div className="suggestion-product">

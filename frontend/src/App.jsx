@@ -114,8 +114,18 @@ export default function App() {
     <div className="app">
       <header className="app-header">
         <div>
-          <h1>StockPulse</h1>
-          <p className="tagline">AI inventory &amp; dynamic pricing console</p>
+          <p className="header-kicker">StockPulse · Merchandising console</p>
+          <div className="brand-row">
+            <div className="logo-mark" aria-hidden="true">
+              <span>SP</span>
+            </div>
+            <div>
+              <h1>
+                <em>AI</em> Inventory &amp; Pricing
+              </h1>
+              <p className="tagline">Signals in, recommendations out - you keep the checkpoint.</p>
+            </div>
+          </div>
         </div>
         <StrategySwitcher config={strategyConfig} onChange={handleStrategyChange} />
       </header>
@@ -156,7 +166,8 @@ export default function App() {
         </div>
 
         <div className="refresh-status">
-          {loading ? 'Loading…' : lastRefreshed ? `Updated ${lastRefreshed.toLocaleTimeString()}` : null}
+          <span className={`live-dot${loading ? ' loading' : ''}`} aria-hidden="true" />
+          {loading ? 'Syncing…' : lastRefreshed ? `Updated ${lastRefreshed.toLocaleTimeString()}` : null}
         </div>
       </div>
 
